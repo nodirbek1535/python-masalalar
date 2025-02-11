@@ -9,5 +9,5 @@ for i in range(n):
         count+=1
 print(f"massivda {count} ta manfiy son mavjud")
 
-manfiy = list(filter(lambda x: x < 0, [(lambda x: int(input(f"{x+1}-elementni kiriting: ")))(i) for i in range(int(input("nechta son kiritmoqchisiz:")))]))
-print(manfiy)
+# manfiy = list(filter(lambda x: x < 0, [(lambda x: int(input(f"{x+1}-elementni kiriting: ")))(i) for i in range(int(input("nechta son kiritmoqchisiz:")))]))
+# print(manfiy)
