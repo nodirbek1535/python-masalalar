@@ -1,0 +1,43 @@
+from PIL import Image
+import os
+import math
+
+def ortacha_rang(img):
+    pixels = list(img.getdata())
+    r = sum(p[0] for p in pixels) // len(pixels)
+    g = sum(p[1] for p in pixels) // len(pixels)
+    b = sum(p[2] for p in pixels) // len(pixels)
+    return (r, g, b)
+
+def rang_farqi(c1, c2):
+    return math.sqrt(sum((a - b) ** 2 for a, b in zip(c1, c2)))
+
+def tekshir_rasm(path, sumer_color):
+    img = Image.open(path).convert("RGB")
+    pixels = list(img.getdata())
+    threshold = int(len(pixels) * 0.005)
+    match = 0
+
+    for p in pixels:
+        if rang_farqi(p, sumer_color) < 30:
+            match += 1
+            if match >= threshold:
+                return True
+    return False
+
+# Yo'llar
+scan_folder = r"C:\Users\asus\OneDrive\Рабочий стол\Task1\Scan"
+sumer_path = r"C:\Users\asus\OneDrive\Рабочий стол\Task1\sumer.bmp"
+
+# Sumer asosiy rangi
+sumer_img = Image.open(sumer_path).convert("RGB")
+sumer_color = ortacha_rang(sumer_img)
+
+natija = 0
+for file in os.listdir(scan_folder):
+    if file.endswith(".bmp"):
+        path = os.path.join(scan_folder, file)
+        if tekshir_rasm(path, sumer_color):
+            natija += 1
+
+print("Natija:", natija)
