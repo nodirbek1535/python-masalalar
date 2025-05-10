@@ -1,46 +1,7 @@
 son = 12345
 teskari_son = int(str(son)[::-1])
 print(teskari_son)
-
-
-
-
-
-
-
-
-
-
-def maxsus_elementlar_soni(mat):
-    n = len(mat)
-    m = len(mat[0])
-    soni = 0
-
-    for i in range(n):
-        for j in range(m):
-            ustun_yigindi = sum(mat[x][j] for x in range(n))
-
-            chapdagilar = mat[i][:j]
-            ongdagilar = mat[i][j+1:]
-
-            # Shartlarni tekshiramiz
-            if (mat[i][j] > ustun_yigindi and
-                all(mat[i][j] > x for x in chapdagilar) and
-                all(mat[i][j] < x for x in ongdagilar)):
-                soni += 1
-
-    return soni
-
-# Misol uchun matritsa
-matritsa = [
-    [2, 5, 3],
-    [1, 8, 6],
-    [4, 7, 9]
-]
-
-print("Maxsus elementlar soni:", maxsus_elementlar_soni(matritsa))
-
-
+#################################################################################################################
 matrisa = [
     [1,2,3,4,5,6,7,8,9,10,11,12],
     [45,23,5,3,5,3,5,3,32,2,4,2],
